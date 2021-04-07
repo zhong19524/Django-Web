@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'rest_framework',
+    'storages',
+    #'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static') # FOR deployment
 STATIC_URL = '/static/'
 
 #create media ROOT
@@ -133,8 +134,29 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #redirect user to home page after login
 LOGIN_REDIRECT_URL = 'mysite_home'
 LOGIN_URL = 'login'
-#
+#user password reset email sending
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_PORT =587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER = os.environ.get('EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('Pass')
+
+#AWS S3 storages
+"""
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+"""
+#REST_FRAMEWORK
+"""
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+"""
