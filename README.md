@@ -1,6 +1,6 @@
 # Django-Web
 
-Django Web app Project: mysite
+Django Web app Project: My social website 
 
 Features include:
   - User register with username, email address, password
